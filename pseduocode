@@ -1,0 +1,42 @@
+# Define the Mitre ATT&CK framework structure in JSON
+mitre_attck_framework = {
+    "techniques": [
+        {"id": "T1001", "name": "Technique 1", "subtechniques": [
+            {"id": "T1001.001", "name": "Sub-technique 1", "controls": {}, "color": "red"},
+            {"id": "T1001.002", "name": "Sub-technique 2", "controls": {}, "color": "orange"}
+        ]},
+        {"id": "T1002", "name": "Technique 2", "subtechniques": [
+            {"id": "T1002.001", "name": "Sub-technique 3", "controls": {}, "color": "green"}
+        ]}
+    ]
+}
+
+# Flask server to handle requests
+from flask import Flask, request, jsonify
+
+app = Flask(__name__)
+
+# Route to get the framework
+@app.route('/framework', methods=['GET'])
+def get_framework():
+    return jsonify(mitre_attck_framework)
+
+# Route to update a sub-technique
+@app.route('/update_subtechnique/<subtechnique_id>', methods=['POST'])
+def update_subtechnique(subtechnique_id):
+    data = request.json
+    for technique in mitre_attck_framework["techniques"]:
+        for subtechnique in technique["subtechniques"]:
+            if subtechnique["id"] == subtechnique_id:
+                subtechnique["controls"] = data.get("controls", subtechnique["controls"])
+                subtechnique["color"] = data.get("color", subtechnique["color"])
+                return jsonify(subtechnique)
+    return jsonify({"error": "Sub-technique not found"}), 404
+
+# Route to export data
+@app.route('/export', methods=['GET'])
+def export_data():
+    return jsonify(mitre_attck_framework)
+
+if __name__ == '__main__':
+    app.run(debug=True)
