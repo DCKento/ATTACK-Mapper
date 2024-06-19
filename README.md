@@ -16,7 +16,7 @@ Plan and prioritize future security improvements.
 ## Technical Details
 Front-end: HTML, CSS, JavaScript
 
-Back-end: Python (Flask or Django)
+Back-end: Python (Flask)
 
 Data Storage: Browser memory (LocalStorage), JSON for export/import
 
@@ -24,7 +24,7 @@ Deployment: On-premises
 
 Architecture: Monolithic
 
-Communication: To be determined (consider RESTful API if using Flask or Django)
+Communication: To be determined (consider RESTful API)
 
 Colour-coding: Red, Orange, Green to indicate control effectiveness
 
@@ -59,7 +59,7 @@ Performance: No specific benchmarks.
 ## Implementation Plan
 ### Set Up Development Environment:
 
-Install Python and necessary libraries (Flask/Django).
+Install Python and necessary libraries (Flask).
 Set up HTML, CSS, and JavaScript for the front-end.
 
 ### Develop Front-end:
@@ -70,7 +70,7 @@ Implement user interaction features for inputting controls and changing colors.
 
 ### Develop Back-end:
 
-Set up Flask/Django server.
+Set up Flask server.
 
 Implement RESTful API (if needed) for communication between front-end and back-end.
 
