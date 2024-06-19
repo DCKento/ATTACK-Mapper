@@ -2,7 +2,7 @@
 A webapp tool designed to help organizations map their current security controls and posture against the Mitre ATT&amp;CK framework.
 
 ## Description
-The webapp tool is designed to help organizations map their current security controls and posture against the Mitre ATT&CK framework. The tool provides an interactive graphical representation of the Mitre ATT&CK framework, allowing users to input and visualize controls for each technique and sub-technique, and assess the effectiveness of these controls through color-coded indicators.
+The ATT&CK Mapper tool is designed to help organizations map their current security controls and posture against the Mitre ATT&CK framework. The tool provides an interactive graphical representation of the Mitre ATT&CK framework, allowing users to input and visualize controls for each technique and sub-technique, and assess the effectiveness of these controls through colour-coded indicators.
 
 ## Purpose
 The primary purpose of this tool is to enable organizations to:
@@ -26,7 +26,7 @@ Architecture: Monolithic
 
 Communication: To be determined (consider RESTful API if using Flask or Django)
 
-Color-coding: Red, Orange, Green to indicate control effectiveness
+Colour-coding: Red, Orange, Green to indicate control effectiveness
 
 ## Requirements
 ### Functional Requirements
