@@ -1,0 +1,73 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+}
+
+header {
+    background-color: #333;
+    color: white;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav button {
+    margin-left: 1rem;
+    padding: 0.5rem 1rem;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+main {
+    padding: 2rem;
+}
+
+.tactic {
+    background-color: white;
+    margin-bottom: 2rem;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.tactic-header {
+    background-color: #4CAF50;
+    color: white;
+    padding: 1rem;
+    border-radius: 5px 5px 0 0;
+}
+
+.technique {
+    border-bottom: 1px solid #eee;
+    padding: 1rem;
+}
+
+.subtechnique {
+    margin-left: 2rem;
+    border-left: 2px solid #4CAF50;
+    padding-left: 1rem;
+}
+
+.control-input {
+    width: 100%;
+    padding: 0.5rem;
+    margin: 0.5rem 0;
+}
+
+.color-select {
+    padding: 0.5rem;
+}
+
+.red { background-color: #ffcccb; }
+.orange { background-color: #ffddab; }
+.green { background-color: #90ee90; }
+
+.screenshot-preview {
+    max-width: 200px;
+    max-height: 200px;
+    margin-top: 1rem;
+}
