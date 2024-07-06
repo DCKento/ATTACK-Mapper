@@ -25,11 +25,19 @@ nav button {
 
 main {
     padding: 2rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+.framework-grid {
+    display: grid;
+    grid-template-columns: repeat(14, 1fr); /* Adjust based on the number of tactics */
+    gap: 1rem;
 }
 
 .tactic {
     background-color: white;
-    margin-bottom: 2rem;
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
@@ -41,7 +49,7 @@ main {
     border-radius: 5px 5px 0 0;
 }
 
-.technique {
+.technique, .subtechnique {
     border-bottom: 1px solid #eee;
     padding: 1rem;
 }

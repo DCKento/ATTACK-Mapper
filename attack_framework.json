@@ -1,357 +1,357 @@
 {
-    "tactics": [
+  "tactics": [
       {
-        "id": "TA0001",
-        "name": "Initial Access",
-        "techniques": [
-          {
-            "id": "T1190",
-            "name": "Exploit Public-Facing Application",
-            "subtechniques": []
-          },
-          {
-            "id": "T1133",
-            "name": "External Remote Services",
-            "subtechniques": []
-          },
-          {
-            "id": "T1566",
-            "name": "Phishing",
-            "subtechniques": [
+          "id": "TA0001",
+          "name": "Initial Access",
+          "techniques": [
               {
-                "id": "T1566.001",
-                "name": "Spearphishing Attachment"
+                  "id": "T1190",
+                  "name": "Exploit Public-Facing Application",
+                  "subtechniques": []
               },
               {
-                "id": "T1566.002",
-                "name": "Spearphishing Link"
+                  "id": "T1133",
+                  "name": "External Remote Services",
+                  "subtechniques": []
               },
               {
-                "id": "T1566.003",
-                "name": "Spearphishing via Service"
+                  "id": "T1566",
+                  "name": "Phishing",
+                  "subtechniques": [
+                      {
+                          "id": "T1566.001",
+                          "name": "Spearphishing Attachment"
+                      },
+                      {
+                          "id": "T1566.002",
+                          "name": "Spearphishing Link"
+                      },
+                      {
+                          "id": "T1566.003",
+                          "name": "Spearphishing via Service"
+                      }
+                  ]
               }
-            ]
-          }
-        ]
+          ]
       },
       {
-        "id": "TA0002",
-        "name": "Execution",
-        "techniques": [
-          {
-            "id": "T1059",
-            "name": "Command and Scripting Interpreter",
-            "subtechniques": [
+          "id": "TA0002",
+          "name": "Execution",
+          "techniques": [
               {
-                "id": "T1059.001",
-                "name": "PowerShell"
+                  "id": "T1059",
+                  "name": "Command and Scripting Interpreter",
+                  "subtechniques": [
+                      {
+                          "id": "T1059.001",
+                          "name": "PowerShell"
+                      },
+                      {
+                          "id": "T1059.002",
+                          "name": "AppleScript"
+                      },
+                      {
+                          "id": "T1059.003",
+                          "name": "Windows Command Shell"
+                      },
+                      {
+                          "id": "T1059.004",
+                          "name": "Unix Shell"
+                      }
+                  ]
               },
               {
-                "id": "T1059.002",
-                "name": "AppleScript"
-              },
-              {
-                "id": "T1059.003",
-                "name": "Windows Command Shell"
-              },
-              {
-                "id": "T1059.004",
-                "name": "Unix Shell"
+                  "id": "T1204",
+                  "name": "User Execution",
+                  "subtechniques": [
+                      {
+                          "id": "T1204.001",
+                          "name": "Malicious Link"
+                      },
+                      {
+                          "id": "T1204.002",
+                          "name": "Malicious File"
+                      }
+                  ]
               }
-            ]
-          },
-          {
-            "id": "T1204",
-            "name": "User Execution",
-            "subtechniques": [
-              {
-                "id": "T1204.001",
-                "name": "Malicious Link"
-              },
-              {
-                "id": "T1204.002",
-                "name": "Malicious File"
-              }
-            ]
-          }
-        ]
+          ]
       },
       {
-        "id": "TA0003",
-        "name": "Persistence",
-        "techniques": [
-          {
-            "id": "T1098",
-            "name": "Account Manipulation",
-            "subtechniques": [
+          "id": "TA0003",
+          "name": "Persistence",
+          "techniques": [
               {
-                "id": "T1098.001",
-                "name": "Additional Cloud Credentials"
+                  "id": "T1098",
+                  "name": "Account Manipulation",
+                  "subtechniques": [
+                      {
+                          "id": "T1098.001",
+                          "name": "Additional Cloud Credentials"
+                      },
+                      {
+                          "id": "T1098.002",
+                          "name": "Exchange Email Delegate Permissions"
+                      }
+                  ]
               },
               {
-                "id": "T1098.002",
-                "name": "Exchange Email Delegate Permissions"
+                  "id": "T1197",
+                  "name": "BITS Jobs",
+                  "subtechniques": []
               }
-            ]
-          },
-          {
-            "id": "T1197",
-            "name": "BITS Jobs",
-            "subtechniques": []
-          }
-        ]
+          ]
       },
       {
-        "id": "TA0004",
-        "name": "Privilege Escalation",
-        "techniques": [
-          {
-            "id": "T1548",
-            "name": "Abuse Elevation Control Mechanism",
-            "subtechniques": [
+          "id": "TA0004",
+          "name": "Privilege Escalation",
+          "techniques": [
               {
-                "id": "T1548.001",
-                "name": "Setuid and Setgid"
+                  "id": "T1548",
+                  "name": "Abuse Elevation Control Mechanism",
+                  "subtechniques": [
+                      {
+                          "id": "T1548.001",
+                          "name": "Setuid and Setgid"
+                      },
+                      {
+                          "id": "T1548.002",
+                          "name": "Bypass User Account Control"
+                      }
+                  ]
               },
               {
-                "id": "T1548.002",
-                "name": "Bypass User Account Control"
+                  "id": "T1134",
+                  "name": "Access Token Manipulation",
+                  "subtechniques": [
+                      {
+                          "id": "T1134.001",
+                          "name": "Token Impersonation/Theft"
+                      },
+                      {
+                          "id": "T1134.002",
+                          "name": "Create Process with Token"
+                      }
+                  ]
               }
-            ]
-          },
-          {
-            "id": "T1134",
-            "name": "Access Token Manipulation",
-            "subtechniques": [
-              {
-                "id": "T1134.001",
-                "name": "Token Impersonation/Theft"
-              },
-              {
-                "id": "T1134.002",
-                "name": "Create Process with Token"
-              }
-            ]
-          }
-        ]
+          ]
       },
       {
-        "id": "TA0005",
-        "name": "Defense Evasion",
-        "techniques": [
-          {
-            "id": "T1070",
-            "name": "Indicator Removal on Host",
-            "subtechniques": [
+          "id": "TA0005",
+          "name": "Defense Evasion",
+          "techniques": [
               {
-                "id": "T1070.001",
-                "name": "Clear Windows Event Logs"
+                  "id": "T1070",
+                  "name": "Indicator Removal on Host",
+                  "subtechniques": [
+                      {
+                          "id": "T1070.001",
+                          "name": "Clear Windows Event Logs"
+                      },
+                      {
+                          "id": "T1070.002",
+                          "name": "Clear Linux or Mac System Logs"
+                      }
+                  ]
               },
               {
-                "id": "T1070.002",
-                "name": "Clear Linux or Mac System Logs"
+                  "id": "T1027",
+                  "name": "Obfuscated Files or Information",
+                  "subtechniques": [
+                      {
+                          "id": "T1027.001",
+                          "name": "Binary Padding"
+                      },
+                      {
+                          "id": "T1027.002",
+                          "name": "Software Packing"
+                      }
+                  ]
               }
-            ]
-          },
-          {
-            "id": "T1027",
-            "name": "Obfuscated Files or Information",
-            "subtechniques": [
-              {
-                "id": "T1027.001",
-                "name": "Binary Padding"
-              },
-              {
-                "id": "T1027.002",
-                "name": "Software Packing"
-              }
-            ]
-          }
-        ]
+          ]
       },
       {
-        "id": "TA0006",
-        "name": "Credential Access",
-        "techniques": [
-          {
-            "id": "T1110",
-            "name": "Brute Force",
-            "subtechniques": [
+          "id": "TA0006",
+          "name": "Credential Access",
+          "techniques": [
               {
-                "id": "T1110.001",
-                "name": "Password Guessing"
+                  "id": "T1110",
+                  "name": "Brute Force",
+                  "subtechniques": [
+                      {
+                          "id": "T1110.001",
+                          "name": "Password Guessing"
+                      },
+                      {
+                          "id": "T1110.002",
+                          "name": "Password Cracking"
+                      }
+                  ]
               },
               {
-                "id": "T1110.002",
-                "name": "Password Cracking"
+                  "id": "T1555",
+                  "name": "Credentials from Password Stores",
+                  "subtechniques": [
+                      {
+                          "id": "T1555.001",
+                          "name": "Keychain"
+                      },
+                      {
+                          "id": "T1555.002",
+                          "name": "Securityd Memory"
+                      }
+                  ]
               }
-            ]
-          },
-          {
-            "id": "T1555",
-            "name": "Credentials from Password Stores",
-            "subtechniques": [
-              {
-                "id": "T1555.001",
-                "name": "Keychain"
-              },
-              {
-                "id": "T1555.002",
-                "name": "Securityd Memory"
-              }
-            ]
-          }
-        ]
+          ]
       },
       {
-        "id": "TA0007",
-        "name": "Discovery",
-        "techniques": [
-          {
-            "id": "T1087",
-            "name": "Account Discovery",
-            "subtechniques": [
+          "id": "TA0007",
+          "name": "Discovery",
+          "techniques": [
               {
-                "id": "T1087.001",
-                "name": "Local Account"
+                  "id": "T1087",
+                  "name": "Account Discovery",
+                  "subtechniques": [
+                      {
+                          "id": "T1087.001",
+                          "name": "Local Account"
+                      },
+                      {
+                          "id": "T1087.002",
+                          "name": "Domain Account"
+                      }
+                  ]
               },
               {
-                "id": "T1087.002",
-                "name": "Domain Account"
+                  "id": "T1082",
+                  "name": "System Information Discovery",
+                  "subtechniques": []
               }
-            ]
-          },
-          {
-            "id": "T1082",
-            "name": "System Information Discovery",
-            "subtechniques": []
-          }
-        ]
+          ]
       },
       {
-        "id": "TA0008",
-        "name": "Lateral Movement",
-        "techniques": [
-          {
-            "id": "T1021",
-            "name": "Remote Services",
-            "subtechniques": [
+          "id": "TA0008",
+          "name": "Lateral Movement",
+          "techniques": [
               {
-                "id": "T1021.001",
-                "name": "Remote Desktop Protocol"
+                  "id": "T1021",
+                  "name": "Remote Services",
+                  "subtechniques": [
+                      {
+                          "id": "T1021.001",
+                          "name": "Remote Desktop Protocol"
+                      },
+                      {
+                          "id": "T1021.002",
+                          "name": "SMB/Windows Admin Shares"
+                      }
+                  ]
               },
               {
-                "id": "T1021.002",
-                "name": "SMB/Windows Admin Shares"
+                  "id": "T1091",
+                  "name": "Replication Through Removable Media",
+                  "subtechniques": []
               }
-            ]
-          },
-          {
-            "id": "T1091",
-            "name": "Replication Through Removable Media",
-            "subtechniques": []
-          }
-        ]
+          ]
       },
       {
-        "id": "TA0009",
-        "name": "Collection",
-        "techniques": [
-          {
-            "id": "T1114",
-            "name": "Email Collection",
-            "subtechniques": [
+          "id": "TA0009",
+          "name": "Collection",
+          "techniques": [
               {
-                "id": "T1114.001",
-                "name": "Local Email Collection"
+                  "id": "T1114",
+                  "name": "Email Collection",
+                  "subtechniques": [
+                      {
+                          "id": "T1114.001",
+                          "name": "Local Email Collection"
+                      },
+                      {
+                          "id": "T1114.002",
+                          "name": "Remote Email Collection"
+                      }
+                  ]
               },
               {
-                "id": "T1114.002",
-                "name": "Remote Email Collection"
+                  "id": "T1056",
+                  "name": "Input Capture",
+                  "subtechniques": [
+                      {
+                          "id": "T1056.001",
+                          "name": "Keylogging"
+                      },
+                      {
+                          "id": "T1056.002",
+                          "name": "GUI Input Capture"
+                      }
+                  ]
               }
-            ]
-          },
-          {
-            "id": "T1056",
-            "name": "Input Capture",
-            "subtechniques": [
-              {
-                "id": "T1056.001",
-                "name": "Keylogging"
-              },
-              {
-                "id": "T1056.002",
-                "name": "GUI Input Capture"
-              }
-            ]
-          }
-        ]
+          ]
       },
       {
-        "id": "TA0011",
-        "name": "Command and Control",
-        "techniques": [
-          {
-            "id": "T1071",
-            "name": "Application Layer Protocol",
-            "subtechniques": [
+          "id": "TA0011",
+          "name": "Command and Control",
+          "techniques": [
               {
-                "id": "T1071.001",
-                "name": "Web Protocols"
+                  "id": "T1071",
+                  "name": "Application Layer Protocol",
+                  "subtechniques": [
+                      {
+                          "id": "T1071.001",
+                          "name": "Web Protocols"
+                      },
+                      {
+                          "id": "T1071.002",
+                          "name": "File Transfer Protocols"
+                      }
+                  ]
               },
               {
-                "id": "T1071.002",
-                "name": "File Transfer Protocols"
+                  "id": "T1132",
+                  "name": "Data Encoding",
+                  "subtechniques": [
+                      {
+                          "id": "T1132.001",
+                          "name": "Standard Encoding"
+                      },
+                      {
+                          "id": "T1132.002",
+                          "name": "Non-Standard Encoding"
+                      }
+                  ]
               }
-            ]
-          },
-          {
-            "id": "T1132",
-            "name": "Data Encoding",
-            "subtechniques": [
+          ]
+      },
+      {
+          "id": "TA0010",
+          "name": "Exfiltration",
+          "techniques": [
               {
-                "id": "T1132.001",
-                "name": "Standard Encoding"
+                  "id": "T1020",
+                  "name": "Automated Exfiltration",
+                  "subtechniques": []
               },
               {
-                "id": "T1132.002",
-                "name": "Non-Standard Encoding"
+                  "id": "T1030",
+                  "name": "Data Transfer Size Limits",
+                  "subtechniques": []
               }
-            ]
-          }
-        ]
+          ]
       },
       {
-        "id": "TA0010",
-        "name": "Exfiltration",
-        "techniques": [
-          {
-            "id": "T1020",
-            "name": "Automated Exfiltration",
-            "subtechniques": []
-          },
-          {
-            "id": "T1030",
-            "name": "Data Transfer Size Limits",
-            "subtechniques": []
-          }
-        ]
-      },
-      {
-        "id": "TA0040",
-        "name": "Impact",
-        "techniques": [
-          {
-            "id": "T1485",
-            "name": "Data Destruction",
-            "subtechniques": []
-          },
-          {
-            "id": "T1486",
-            "name": "Data Encrypted for Impact",
-            "subtechniques": []
-          }
-        ]
+          "id": "TA0040",
+          "name": "Impact",
+          "techniques": [
+              {
+                  "id": "T1485",
+                  "name": "Data Destruction",
+                  "subtechniques": []
+              },
+              {
+                  "id": "T1486",
+                  "name": "Data Encrypted for Impact",
+                  "subtechniques": []
+              }
+          ]
       }
-    ]
-  }
+  ]
+}

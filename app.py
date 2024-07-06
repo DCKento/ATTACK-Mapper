@@ -1,100 +1,75 @@
-from flask import Flask, render_template, request, jsonify, send_file
-import json
-import csv
-import io
 import os
-from werkzeug.utils import secure_filename
+import json
+from flask import Flask, jsonify, request, send_from_directory
 
 app = Flask(__name__)
-app.config['UPLOAD_FOLDER'] = 'uploads'
+UPLOAD_FOLDER = 'uploads'
+if not os.path.exists(UPLOAD_FOLDER):
+    os.makedirs(UPLOAD_FOLDER)
 
-# Load MITRE ATT&CK framework data
-with open('attack_framework.json', 'r') as f:
-    attack_data = json.load(f)
-
-# In-memory storage for user data (replace with database in production)
-user_data = {}
-
-@app.route('/')
-def index():
-    return render_template('index.html')
+# Load the ATT&CK framework JSON data
+with open('attack_framework.json') as f:
+    attack_framework = json.load(f)
 
 @app.route('/api/framework', methods=['GET'])
 def get_framework():
-    return jsonify(attack_data)
+    return jsonify(attack_framework)
 
 @app.route('/api/update_technique', methods=['POST'])
 def update_technique():
     data = request.json
-    technique_id = data['id']
-    control = data['control']
-    color = data['color']
-    
-    user_data[technique_id] = {'control': control, 'color': color}
-    
-    return jsonify({"status": "success"})
+    # Find the technique by id and update its control and color
+    for tactic in attack_framework['tactics']:
+        for technique in tactic['techniques']:
+            if technique['id'] == data['id']:
+                technique['control'] = data.get('control')
+                technique['color'] = data.get('color')
+                return jsonify({'status': 'success'})
+            for subtech in technique.get('subtechniques', []):
+                if subtech['id'] == data['id']:
+                    subtech['control'] = data.get('control')
+                    subtech['color'] = data.get('color')
+                    return jsonify({'status': 'success'})
+    return jsonify({'status': 'failure'})
 
 @app.route('/api/upload_screenshot', methods=['POST'])
 def upload_screenshot():
-    if 'screenshot' not in request.files:
-        return jsonify({"status": "error", "message": "No file part"})
-    
     file = request.files['screenshot']
-    technique_id = request.form['id']
-    
-    if file.filename == '':
-        return jsonify({"status": "error", "message": "No selected file"})
-    
-    if file:
-        filename = secure_filename(file.filename)
-        filepath = os.path.join(app.config['UPLOAD_FOLDER'], f"{technique_id}_{filename}")
-        file.save(filepath)
-        user_data[technique_id]['screenshot'] = filepath
-        return jsonify({"status": "success", "url": filepath})
+    id = request.form['id']
+    filename = f'{id}_{file.filename}'
+    file_path = os.path.join(UPLOAD_FOLDER, filename)
+    file.save(file_path)
+    url = f'/uploads/{filename}'
+    # Update the framework with the screenshot URL (if needed)
+    return jsonify({'status': 'success', 'url': url})
+
+@app.route('/uploads/<filename>')
+def uploaded_file(filename):
+    return send_from_directory(UPLOAD_FOLDER, filename)
 
 @app.route('/api/export', methods=['GET'])
-def export_data():
-    export_data = {
-        "framework": attack_data,
-        "user_data": user_data
-    }
-    return jsonify(export_data)
+def export_json():
+    return jsonify(attack_framework)
 
 @app.route('/api/export_csv', methods=['GET'])
 def export_csv():
-    output = io.StringIO()
-    writer = csv.writer(output)
+    import csv
+    from io import StringIO
+    si = StringIO()
+    cw = csv.writer(si)
     
-    writer.writerow(['Tactic', 'Technique', 'Subtechnique', 'Control', 'Effectiveness'])
-    
-    for tactic in attack_data['tactics']:
+    # Write CSV header
+    cw.writerow(["Tactic", "Technique", "Subtechnique", "Control", "Color"])
+
+    # Write CSV rows
+    for tactic in attack_framework['tactics']:
         for technique in tactic['techniques']:
-            tech_data = user_data.get(technique['id'], {})
-            writer.writerow([
-                tactic['name'],
-                technique['name'],
-                '',
-                tech_data.get('control', ''),
-                tech_data.get('color', '')
-            ])
-            
-            for subtechnique in technique['subtechniques']:
-                subtech_data = user_data.get(subtechnique['id'], {})
-                writer.writerow([
-                    tactic['name'],
-                    technique['name'],
-                    subtechnique['name'],
-                    subtech_data.get('control', ''),
-                    subtech_data.get('color', '')
-                ])
+            cw.writerow([tactic['name'], technique['name'], "", technique.get('control', ""), technique.get('color', "")])
+            for subtech in technique.get('subtechniques', []):
+                cw.writerow([tactic['name'], technique['name'], subtech['name'], subtech.get('control', ""), subtech.get('color', "")])
     
-    output.seek(0)
-    return send_file(
-        io.BytesIO(output.getvalue().encode('utf-8')),
-        mimetype='text/csv',
-        as_attachment=True,
-        attachment_filename='attack_mapper_export.csv'
-    )
+    output = si.getvalue()
+    return app.response_class(output, mimetype="text/csv")
 
 if __name__ == '__main__':
     app.run(debug=True)
