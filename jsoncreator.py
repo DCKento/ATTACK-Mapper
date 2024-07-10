@@ -21,11 +21,17 @@ for obj in attack_data["objects"]:
     elif obj["type"] == "attack-pattern" and not obj.get("x_mitre_is_subtechnique", False):
         for phase in obj.get("kill_chain_phases", []):
             if phase["kill_chain_name"] == "mitre-attack":
-                tactics[phase["phase_name"]]["techniques"].append({
+                phase_name = phase["phase_name"]
+                if phase_name not in tactics:
+                    tactics[phase_name] = {
+                        "id": phase_name,
+                        "name": phase_name,
+                        "techniques": []
+                    }
+                tactics[phase_name]["techniques"].append({
                     "id": obj["id"],
                     "name": obj["name"]
                 })
-
 # Convert to the desired JSON structure
 enterprise_attack = {
     "enterprise-attack": {
