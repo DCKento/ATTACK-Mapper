@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     function renderFramework(data) {
         attackFramework.innerHTML = '';
-        data.tactics.forEach(tactic => {
+        data['enterprise-attack'].tactics.forEach(tactic => {
             const tacticElement = document.createElement('div');
             tacticElement.className = 'tactic';
             tacticElement.innerHTML = `
@@ -27,24 +27,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     <button class="upload-btn" data-id="${technique.id}">Upload Screenshot</button>
                     <div class="screenshot-preview" data-id="${technique.id}"></div>
                 `;
-                
-                technique.subtechniques.forEach(subtech => {
-                    const subtechElement = document.createElement('div');
-                    subtechElement.className = 'subtechnique';
-                    subtechElement.innerHTML = `
-                        <h4>${subtech.name}</h4>
-                        <input type="text" class="control-input" placeholder="Enter control" data-id="${subtech.id}">
-                        <select class="color-select" data-id="${subtech.id}">
-                            <option value="">Select effectiveness</option>
-                            <option value="red">Red</option>
-                            <option value="orange">Orange</option>
-                            <option value="green">Green</option>
-                        </select>
-                        <button class="upload-btn" data-id="${subtech.id}">Upload Screenshot</button>
-                        <div class="screenshot-preview" data-id="${subtech.id}"></div>
-                    `;
-                    techElement.appendChild(subtechElement);
-                });
                 
                 tacticElement.appendChild(techElement);
             });
@@ -75,8 +57,8 @@ document.addEventListener('DOMContentLoaded', () => {
             .then(response => response.json())
             .then(data => {
                 if (data.status === 'success') {
-                    event.target.closest('.technique, .subtechnique').className = 
-                        event.target.closest('.technique, .subtechnique').className.replace(/red|orange|green/, '') + ' ' + color;
+                    event.target.closest('.technique').className = 
+                        event.target.closest('.technique').className.replace(/red|orange|green/, '') + ' ' + color;
                 }
             })
             .catch(error => console.error('Error:', error));
