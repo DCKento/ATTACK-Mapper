@@ -1,6 +1,6 @@
 import os
 import json
-from flask import Flask, jsonify, request, send_from_directory
+from flask import Flask, jsonify, request, send_from_directory, render_template
 
 app = Flask(__name__)
 UPLOAD_FOLDER = 'uploads'
@@ -10,6 +10,10 @@ if not os.path.exists(UPLOAD_FOLDER):
 # Load the ATT&CK framework JSON data
 with open('attack_framework.json') as f:
     attack_framework = json.load(f)
+
+@app.route('/')
+def index():
+    return render_template('index.html')
 
 @app.route('/api/framework', methods=['GET'])
 def get_framework():
